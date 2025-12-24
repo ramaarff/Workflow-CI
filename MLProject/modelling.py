@@ -6,8 +6,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
-mlflow.set_tracking_uri("http://127.0.0.1:5000/")
-mlflow.set_experiment("student_performance")
+# mlflow.set_tracking_uri("http://127.0.0.1:5000/")
+# mlflow.set_experiment("student_performance")
 
 def build_model():
     mlflow.autolog()
@@ -27,4 +27,5 @@ def build_model():
         mlflow.sklearn.log_model(registered_model_name="student_performance_model", sk_model=model, artifact_path="model")
 
 if __name__ == "__main__":
+
     build_model()
