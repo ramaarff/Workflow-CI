@@ -33,6 +33,12 @@ jobs:
         run: |
           mlflow run ./MLProject --env-manager=local
 
+      - name: Validate mlflow run completion
+        run: |
+          if [ -z "$(ls -1d mlruns/0/*/ 2>/dev/null | head -n 1)" ]; then
+            echo "No run directory found. MLflow run may have failed."; exit 1;
+          fi
+
       - name: Get latest MLflow run_id
         run: |
           RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
